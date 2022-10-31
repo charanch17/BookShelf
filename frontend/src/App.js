@@ -17,7 +17,6 @@ function App() {
   const dispatch = useDispatch();
   // return <Login></Login>
   useEffect(() => {
-    console.log("why");
     const clean = onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(
@@ -30,37 +29,37 @@ function App() {
       }
     });
     return clean();
-  }, []);
+  }, [dispatch]);
   return (
     <>
-    <Alert/>
-    <Routes>
-      <Route path="/">
-        <Route element={<PrivateRoutes />}>
-          <Route
-            index
-            element={
-              <>
-                <Navbar />
-                <Shelf />
-              </>
-            }
-          />
+      <Alert />
+      <Routes>
+        <Route path="/">
+          <Route element={<PrivateRoutes />}>
+            <Route
+              index
+              element={
+                <>
+                  <Navbar />
+                  <Shelf />
+                </>
+              }
+            />
 
-          <Route
-            path="/explore"
-            element={
-              <>
-                <Navbar />
-                <ExploreBooks />
-              </>
-            }
-          />
+            <Route
+              path="/explore"
+              element={
+                <>
+                  <Navbar />
+                  <ExploreBooks />
+                </>
+              }
+            />
+          </Route>
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
         </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-      </Route>
-    </Routes>
+      </Routes>
     </>
   );
 }

@@ -1,1 +1,5 @@
-export const initialstate = { data: [], searchAutoComplete: [] ,isLoading:true};
+export const initialstate = {
+  data: [],
+  searchAutoComplete: [],
+  isLoading: true,
+};

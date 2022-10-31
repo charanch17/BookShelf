@@ -11,12 +11,12 @@ const CurrentReadingSlice = createSlice({
   name: "CurrentReading",
   initialState: initialState,
   reducers: {
-    setIsLoading :setIsLoading
+    setIsLoading: setIsLoading,
   },
   extraReducers: {
     fetchCurrentReadingBooks,
-    [fetchCurrentReadingBooks.rejected]:(state,payload)=>{
-      throw new Error("Unable to Fetch Current Reading Books")
+    [fetchCurrentReadingBooks.rejected]: (state, payload) => {
+      throw new Error("Unable to Fetch Current Reading Books");
     },
     [fetchCurrentReadingBooks.fulfilled]: (state, { payload }) => {
       state.data = payload.data;
@@ -26,12 +26,12 @@ const CurrentReadingSlice = createSlice({
     [addCurrentReadingBook.fulfilled]: (state, { payload }) => {
       if (!payload.exists) {
         state.data.push(payload.data);
-      }else{
-        throw new Error("Book Exists In your Shelf")
+      } else {
+        throw new Error("Book Exists In your Shelf");
       }
     },
-    [addCurrentReadingBook.rejected]:(state,payload)=>{
-      throw payload.error
+    [addCurrentReadingBook.rejected]: (state, payload) => {
+      throw payload.error;
     },
     removeCurrentReadingBook,
     [removeCurrentReadingBook.fulfilled]: (state, { payload }) => {
@@ -39,9 +39,9 @@ const CurrentReadingSlice = createSlice({
         return book.docId !== payload.docId;
       });
     },
-    [removeCurrentReadingBook.rejected]:(state,payload)=>{
-      throw payload.error
-    }
+    [removeCurrentReadingBook.rejected]: (state, payload) => {
+      throw payload.error;
+    },
   },
 });
 export default CurrentReadingSlice.reducer;

@@ -5,7 +5,6 @@ import axios from "axios";
 export const fetchBooks = createAsyncThunk(
   "ExploreBooks/get",
   async (payload) => {
-    console.log(payload);
     const resp = await axios.get(GOOGLEBOOKS_GET_URL, {
       params: {
         q: payload.searchText ? payload.searchText : "coding",
@@ -37,10 +36,9 @@ export const searchAutoComplete = createAsyncThunk(
     return suggestions;
   }
 );
-export const setIsLoading =(state,action)=>{
+export const setIsLoading = (state, action) => {
   state.isLoading = true;
-
-}
+};
 
 export const ResetSuggestions = (state, action) => {
   state.searchAutoComplete = [];

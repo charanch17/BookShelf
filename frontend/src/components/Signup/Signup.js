@@ -85,33 +85,43 @@ const Signup = () => {
     <div className={styles.container}>
       <Card className={styles.card}>
         {userID && <Navigate to="/" replace={true} />}
-        {!userID &&loading && <span className={styles.progressbar}><ProgressBar /></span>}
+        {!userID && loading && (
+          <span className={styles.progressbar}>
+            <ProgressBar />
+          </span>
+        )}
 
         <h1 className={styles.cardheader}>Sign Up</h1>
         <form onSubmit={formSubmitHandler} className={styles.form}>
           <div className={styles["user-input"]}>
-            <label htmlFor="email" className={styles.label}>
-              Email
-            </label>
             <input
               id="email"
               ref={emailRef}
-              className={!formValidity.email ? styles.inputerror : ""}
+              placeholder=" "
+              className={`${!formValidity.email ? styles.inputerror : ""} ${
+                styles.input
+              }`}
             />
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
             {!formValidity.email && (
               <span className={styles.error}>enter valid email !!</span>
             )}
           </div>
           <div className={styles["user-input"]}>
-            <label htmlFor="password" className={styles.label}>
-              password
-            </label>
             <input
               id="password"
               ref={passwordRef}
               type="password"
-              className={!formValidity.password ? styles.inputerror : ""}
+              placeholder=" "
+              className={`${!formValidity.password ? styles.inputerror : ""} ${
+                styles.input
+              }`}
             />
+            <label htmlFor="password" className={styles.label}>
+              password
+            </label>
             {!formValidity.password && (
               <span className={styles.error}>
                 password didnt match criteria!!
@@ -119,15 +129,18 @@ const Signup = () => {
             )}
           </div>
           <div className={styles["user-input"]}>
-            <label htmlFor="confirmpassword" className={styles.label}>
-              Re-enter password
-            </label>
             <input
               id="confirmpassword"
               ref={confirmPasswordRef}
               type="password"
-              className={!formValidity.confirmPassword ? styles.inputerror : ""}
+              placeholder=" "
+              className={`${
+                !formValidity.confirmPassword ? styles.inputerror : ""
+              } ${styles.input}`}
             />
+            <label htmlFor="confirmpassword" className={styles.label}>
+              Re-enter password
+            </label>
             {!formValidity.confirmPassword && (
               <span className={styles.error}>
                 re entered password should match password !!
@@ -139,7 +152,10 @@ const Signup = () => {
               Signup
             </button>
             <div className={styles.links}>
-              <label htmlFor="login" style={{ margin: "5px" }}>
+              <label
+                htmlFor="login"
+                style={{ margin: "5px", color: "rgb(71, 181, 255)" }}
+              >
                 Already have account ?
               </label>
               <Link to="/login" id="login">

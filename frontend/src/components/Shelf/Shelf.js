@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import styles from "./Shelf.module.css";
 import MediaScroller from "../MediaScroller/MediaScroller";
 import { useSelector, useDispatch } from "react-redux";
-import store from "../../store/store";
 import { fetchCurrentReadingBooks } from "../../store/features/CurrentReading/CurrentReadingReducers";
 import { fetchWantToReadBooks } from "../../store/features/WantToRead/WantToReadReducers";
 import { fetchReadBooks } from "../../store/features/Read/ReadReducers";
-import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import Tabs from "../UI/Tabs/Tabs";
 import ProgressBar from "../UI/ProgressBar/ProgressBar";
 import { currentReadingActions } from "../../store/features/CurrentReading/CurrentReadingSlice";
@@ -24,7 +21,6 @@ const Shelf = () => {
   const WantToReadBooks = useSelector((state) => {
     return state.wantToRead.data;
   });
-  console.log(CurrentlyReadingBooks);
 
   const isLoading = useSelector((state) => {
     return (
@@ -42,17 +38,17 @@ const Shelf = () => {
   useEffect(() => {
     dispatch(currentReadingActions.setIsLoading());
     dispatch(WantToReadSliceActions.setIsLoading());
-    dispatch(ReadSliceActions.setIsLoading())
-    dispatch(fetchCurrentReadingBooks({ uid: uid })).catch((e)=>{
-      dispatch(AlertActions.setAlert({alertMessage:e.message}))
+    dispatch(ReadSliceActions.setIsLoading());
+    dispatch(fetchCurrentReadingBooks({ uid: uid })).catch((e) => {
+      dispatch(AlertActions.setAlert({ alertMessage: e.message }));
     });
-    dispatch(fetchWantToReadBooks({ uid: uid })).catch((e)=>{
-      dispatch(AlertActions.setAlert({alertMessage:e.message}))
+    dispatch(fetchWantToReadBooks({ uid: uid })).catch((e) => {
+      dispatch(AlertActions.setAlert({ alertMessage: e.message }));
     });
-    dispatch(fetchReadBooks({ uid: uid })).catch((e)=>{
-      dispatch(AlertActions.setAlert({alertMessage:e.message}))
+    dispatch(fetchReadBooks({ uid: uid })).catch((e) => {
+      dispatch(AlertActions.setAlert({ alertMessage: e.message }));
     });
-  }, []);
+  }, [dispatch, uid]);
 
   return (
     <>
@@ -84,7 +80,6 @@ const Shelf = () => {
               },
             ]}
             onClick={(title) => {
-              console.log("he");
               setSelectedTab(title);
             }}
           />

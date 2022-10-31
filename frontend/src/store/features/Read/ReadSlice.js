@@ -23,20 +23,18 @@ const ReadSlice = createSlice({
     [addReadBook.fulfilled]: (state, { payload }) => {
       if (!payload.exists) {
         state.data.push({ ...payload.data });
+      } else {
+        throw new Error("Book Exists In your Shelf");
       }
-      else{
-            throw new Error("Book Exists In your Shelf");
-          }
-      
     },
     [removeReadBook.fulfilled]: (state, { payload }) => {
       state.data = state.data.filter((book) => {
         return book.docId !== payload.docId;
       });
     },
-    [removeReadBook.rejected]:(state,payload)=>{
-        throw payload.error
-    }
+    [removeReadBook.rejected]: (state, payload) => {
+      throw payload.error;
+    },
   },
 });
 

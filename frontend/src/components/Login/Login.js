@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Card from "../UI/Card/Card";
 import styles from "./Login.module.css";
 import { useSelector } from "react-redux";
@@ -54,7 +54,11 @@ const Login = () => {
           })
           .catch((e) => {
             dispatch(authActions.setLoading());
-            dispatch(AlertActions.setAlert({ alertMessage: e.message }));
+            dispatch(
+              AlertActions.setAlert({
+                alertMessage: "Unable to fetch account info to send mail",
+              })
+            );
           });
       }
     } else {
@@ -122,33 +126,44 @@ const Login = () => {
           <form onSubmit={formSubmitHandler} className={styles.form}>
             {!resetMailSent && (
               <div className={styles["user-input"]}>
-                <label htmlFor="email" className={styles.label}>
-                  Email
-                </label>
                 <input
                   id="email"
                   ref={emailRef}
-                  className={!formValidity.email ? styles.inputerror : ""}
+                  placeholder=" "
+                  autoComplete="off"
+                  className={`${!formValidity.email ? styles.inputerror : ""} ${
+                    styles.input
+                  }`}
                 />
+                <label htmlFor="email" className={styles.label}>
+                  Email
+                </label>
+
                 {!formValidity.email && (
                   <span className={styles.error}>enter valid email !!</span>
                 )}
               </div>
             )}
-            {
-              resetMailSent && <span style={{marginLeft:"1rem"}} >follow instructions in mail to reset password and Login Again</span>
-            }
+            {resetMailSent && (
+              <span style={{ marginLeft: "1rem", color: "rgb(71, 181, 255)" }}>
+                follow instructions in mail to reset password and Login Again
+              </span>
+            )}
             {!ResetPassword && (
               <div className={styles["user-input"]}>
-                <label htmlFor="password" className={styles.label}>
-                  password
-                </label>
                 <input
                   id="password"
                   ref={passwordRef}
                   type="password"
-                  className={!formValidity.password ? styles.inputerror : ""}
+                  placeholder=" "
+                  autoComplete="off"
+                  className={`${
+                    !formValidity.password ? styles.inputerror : ""
+                  } ${styles.input}`}
                 />
+                <label htmlFor="password" className={styles.label}>
+                  Password
+                </label>
                 {!formValidity.password && (
                   <span className={styles.error}>
                     password didnt match criteria!!
@@ -157,16 +172,20 @@ const Login = () => {
               </div>
             )}
             <div className={styles.actions}>
-              <button type="submit" className={styles.login} disabled={loading || resetMailSent }>
+              <button
+                type="submit"
+                className={styles.login}
+                disabled={loading || resetMailSent}
+              >
                 {!ResetPassword ? "Login" : "Send password Reset Link"}
               </button>
               <div className={styles.links}>
                 <Link to="/signup">Signup</Link>
                 <Link
                   onClick={() => {
-                    setResetMailSent((prev)=>{
-                      return false
-                    })
+                    setResetMailSent((prev) => {
+                      return false;
+                    });
                     setResetPassword((prev) => {
                       return !prev;
                     });

@@ -1,7 +1,5 @@
-
 export const initialState = {
-    showAlertModal : false,
-    alertMessage :'',
-    type:''
-
-}
+  showAlertModal: false,
+  alertMessage: "",
+  type: "",
+};

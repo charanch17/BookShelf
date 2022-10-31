@@ -11,17 +11,19 @@ const Book = (props) => {
     <div>
       <Card className={styles.book}>
         <div className={styles.container}>
-         {props.bookData.volumeInfo.imageLinks && <img
-            src={props.bookData.volumeInfo.imageLinks.thumbnail}
-            alt={props.bookData.volumeInfo.imageLinks.smallThumbnail}
-            className={styles.image}
-          />
-         }
+          {props.bookData.volumeInfo.imageLinks && (
+            <img
+              src={props.bookData.volumeInfo.imageLinks.thumbnail}
+              alt={props.bookData.volumeInfo.imageLinks.smallThumbnail}
+              className={styles.image}
+            />
+          )}
           <h5 className={styles.title}>{props.bookData.volumeInfo.title}</h5>
-         {props.bookData.volumeInfo.authors && <h6 className={styles.author}>
-            {props.bookData.volumeInfo.authors[0]}
-          </h6>
-}
+          {props.bookData.volumeInfo.authors && (
+            <h6 className={styles.author}>
+              {props.bookData.volumeInfo.authors[0]}
+            </h6>
+          )}
         </div>
       </Card>
       {/* {menuVisible && (
@@ -38,13 +40,12 @@ const Book = (props) => {
        {menuVisible && <ChevronUpIcon className={styles.fabicon}/>}
      </span> */}
         <Fab
-          bookData={props.bookData  }
+          bookData={props.bookData}
           menuItems={props.menuItems}
           menuActions={props.menuActions}
           menuVisible={menuVisible}
-          selectedTab ={props.selectedTab}
+          selectedTab={props.selectedTab}
           onClick={() => {
-            console.log(props.bookData.id)
             props.fabClick(props.bookData.id);
           }}
         />

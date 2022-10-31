@@ -17,16 +17,30 @@ const AvatarMenu = (props) => {
   const logoutHandler = () => {
     dispatch(logout()).then(() => {
       dispatch(authActions.resetCurrentUser());
-      dispatch(AlertActions.setAlert({alertMessage:"Logged Out Successfully",type:"success"}))
+      dispatch(
+        AlertActions.setAlert({
+          alertMessage: "Logged Out Successfully",
+          type: "success",
+        })
+      );
     });
   };
   const currentUserData = useSelector((state) => {
     return state.auth.currentUser;
   });
-  console.log(currentUserData);
   return (
-    <div className={`${props.showMenu?styles["user-menu-wrapper"]:styles["user-menu-wrapper-close"]}`}>
-      <div className={`${props.showMenu?styles["user-menu"]:styles["user-menu-close"]}`}>
+    <div
+      className={`${
+        props.showMenu
+          ? styles["user-menu-wrapper"]
+          : styles["user-menu-wrapper-close"]
+      }`}
+    >
+      <div
+        className={`${
+          props.showMenu ? styles["user-menu"] : styles["user-menu-close"]
+        }`}
+      >
         {!currentUserData.uid && <Navigate to="/login" replace={true} />}
         <XMarkIcon className={styles.icon} onClick={props.toggleMenu} />
         {currentUserData.uid &&

@@ -36,29 +36,48 @@ const ExploreBooks = (props) => {
   const menuActions = (menuItem, bookData) => {
     switch (menuItem) {
       case "Currently Reading":
-        dispatch(addCurrentReadingBook({ uid: uid, bookData: bookData })).then(()=>{
-          dispatch(AlertActions.setAlert({alertMessage:"Added Book To Current Reading",type:"success"}))
-        }).catch((e)=>{
-          dispatch(AlertActions.setAlert({alertMessage:e.message}));
-        });
+        dispatch(addCurrentReadingBook({ uid: uid, bookData: bookData }))
+          .then(() => {
+            dispatch(
+              AlertActions.setAlert({
+                alertMessage: "Added Book To Current Reading",
+                type: "success",
+              })
+            );
+          })
+          .catch((e) => {
+            dispatch(AlertActions.setAlert({ alertMessage: e.message }));
+          });
         break;
       case "Want To Read":
-        dispatch(addWantToReadBook({ uid: uid, bookData: bookData })).then(()=>{
-          dispatch(AlertActions.setAlert({alertMessage:"Added Book To Want To Read",type:"success"}))
-
-        }).catch((e)=>{
-          dispatch(AlertActions.setAlert({alertMessage:e.message}));
-        });
+        dispatch(addWantToReadBook({ uid: uid, bookData: bookData }))
+          .then(() => {
+            dispatch(
+              AlertActions.setAlert({
+                alertMessage: "Added Book To Want To Read",
+                type: "success",
+              })
+            );
+          })
+          .catch((e) => {
+            dispatch(AlertActions.setAlert({ alertMessage: e.message }));
+          });
         break;
       case "Read":
-        dispatch(addReadBook({ uid: uid, bookData: bookData })).then(()=>{
-          dispatch(AlertActions.setAlert({alertMessage:"Added Book To Read",type:"success"}))
-        }).catch((e)=>{
-          dispatch(AlertActions.setAlert({alertMessage:e.message}));
-        });
+        dispatch(addReadBook({ uid: uid, bookData: bookData }))
+          .then(() => {
+            dispatch(
+              AlertActions.setAlert({
+                alertMessage: "Added Book To Read",
+                type: "success",
+              })
+            );
+          })
+          .catch((e) => {
+            dispatch(AlertActions.setAlert({ alertMessage: e.message }));
+          });
         break;
       default:
-        console.log("hg");
     }
     setMenuVisibleBook("");
   };

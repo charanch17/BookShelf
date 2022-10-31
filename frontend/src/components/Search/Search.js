@@ -8,14 +8,15 @@ import { ExploreBooksactions } from "../../store/features/ExploreBooks/ExploreBo
 const Search = (props) => {
   const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
-  const suggestions = useSelector((state)=>{return state.currentBooks.searchAutoComplete})
+  const suggestions = useSelector((state) => {
+    return state.currentBooks.searchAutoComplete;
+  });
   useEffect(() => {
     var id = setTimeout(() => {
-      if (searchInput.length>0) {
-        dispatch(searchAutoComplete({searchText:searchInput}));
-      }
-      else{
-        dispatch(ExploreBooksactions.resetSuggestions())
+      if (searchInput.length > 0) {
+        dispatch(searchAutoComplete({ searchText: searchInput }));
+      } else {
+        dispatch(ExploreBooksactions.resetSuggestions());
       }
     }, 250);
     return () => {
@@ -25,14 +26,15 @@ const Search = (props) => {
   return (
     <div className={`${styles.container} ${props.className}`}>
       <input
-        className={`${styles.input} ${suggestions.length>0?styles.activeautocomplete:""}`}
+        className={`${styles.input} ${
+          suggestions.length > 0 ? styles.activeautocomplete : ""
+        }`}
         value={searchInput}
         onChange={(e) => {
-          if(e.target.value.length === 0){
-            dispatch(ExploreBooksactions.resetSuggestions())
+          if (e.target.value.length === 0) {
+            dispatch(ExploreBooksactions.resetSuggestions());
           }
           setSearchInput(e.target.value);
-        
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter" && searchInput.length) {

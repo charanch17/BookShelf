@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./Navbar.module.css";
 import { useSelector } from "react-redux";
 import Avatar from "../Avatar/Avatar";
@@ -8,7 +8,7 @@ import {
   BookOpenIcon,
   ArrowLeftIcon,
 } from "@heroicons/react/20/solid";
-import { useLocation, Link, Navigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 const Navbar = (props) => {
   const currentUserData = useSelector((state) => {
     return state.auth.currentUser;

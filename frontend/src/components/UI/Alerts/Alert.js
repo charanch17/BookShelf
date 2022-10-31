@@ -10,12 +10,14 @@ const Alert = () => {
   });
   const dispatch = useDispatch();
   useEffect(() => {
-    var id = setTimeout(() => {
-      dispatch(AlertActions.resetAlert());
-    }, 5000);
-    return () => {
-      clearTimeout(id);
-    };
+    if (state.showAlertModal) {
+      var id = setTimeout(() => {
+        dispatch(AlertActions.resetAlert());
+      }, 5000);
+      return () => {
+        clearTimeout(id);
+      };
+    }
   }, [state.showAlertModal, dispatch]);
   return (
     <>
@@ -28,9 +30,12 @@ const Alert = () => {
           >
             <ExclamationCircleIcon className={styles.icon} />
             <span className={styles.text}>{state.alertMessage}</span>
-            <XMarkIcon className={styles.icon} onClick={()=>{
+            <XMarkIcon
+              className={styles.icon}
+              onClick={() => {
                 dispatch(AlertActions.resetAlert());
-            }}/>
+              }}
+            />
           </div>
         </div>
       )}

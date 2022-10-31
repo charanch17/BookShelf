@@ -7,7 +7,6 @@ import {
   query,
   where,
   getDocs,
-  onSnapshot,
   deleteDoc,
   doc,
 } from "firebase/firestore";
@@ -24,7 +23,7 @@ export const fetchCurrentReadingBooks = createAsyncThunk(
     const resp = await getDocs(q);
     const data = [];
     resp.forEach((doc) => {
-      data.push({  ...doc.data(),docId: doc.id });
+      data.push({ ...doc.data(), docId: doc.id });
     });
     return { data };
   }
@@ -36,7 +35,6 @@ export const removeCurrentReadingBook = createAsyncThunk(
     const docRef = doc(db, "CurrentlyReading", payload.docId);
 
     const resp = await deleteDoc(docRef);
-    console.log(resp,payload,docRef)
     return { docId: payload.docId };
   }
 );
@@ -79,7 +77,6 @@ export const addCurrentReadingBook = createAsyncThunk(
   }
 );
 
-export const setIsLoading =(state,actions)=>{
-  console.log(state);
+export const setIsLoading = (state, actions) => {
   state.isLoading = true;
-}
+};

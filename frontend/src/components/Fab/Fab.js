@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Fab.module.css";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 const Fab = (props) => {
-  console.log(props.menuVisible);
   return (
     <div
       className={`${styles.container} ${

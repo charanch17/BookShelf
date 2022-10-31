@@ -1,4 +1,4 @@
 export const initialState = {
-    isLoading : true,
-    data:[]
-}
+  isLoading: true,
+  data: [],
+};

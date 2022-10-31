@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
-import store from "../../store/store";
 import {
   addCurrentReadingBook,
   removeCurrentReadingBook,
@@ -38,16 +37,16 @@ const MediaScroller = (props) => {
     if (selectedTab === "Currently Reading") {
       dispatch(removeCurrentReadingBook({ docId: bookData.docId })).catch(
         (e) => {
-          dispatch(AlertActions.setAlert({alertMessage:e.message}));
+          dispatch(AlertActions.setAlert({ alertMessage: e.message }));
         }
       );
     } else if (selectedTab === "Read") {
       dispatch(removeReadBook({ docId: bookData.docId })).catch((e) => {
-        dispatch(AlertActions.setAlert({alertMessage:e.message}));
+        dispatch(AlertActions.setAlert({ alertMessage: e.message }));
       });
     } else if (selectedTab === "Want To Read") {
       dispatch(removeWantToReadBook({ docId: bookData.docId })).catch((e) => {
-        dispatch(AlertActions.setAlert({alertMessage:e.message}));
+        dispatch(AlertActions.setAlert({ alertMessage: e.message }));
       });
     }
   };
@@ -60,13 +59,19 @@ const MediaScroller = (props) => {
             bookData: bookData,
             actiontype: "move",
           })
-        ).then(() => {
-          removeaftercopy(bookData, selectedTab);
-          dispatch(AlertActions.setAlert({alertMessage:"Book Moved To Currently Reading",type:"success"}))
-
-        }).catch((e)=>{
-          dispatch(AlertActions.setAlert({alertMessage:e.message}));
-        });
+        )
+          .then(() => {
+            removeaftercopy(bookData, selectedTab);
+            dispatch(
+              AlertActions.setAlert({
+                alertMessage: "Book Moved To Currently Reading",
+                type: "success",
+              })
+            );
+          })
+          .catch((e) => {
+            dispatch(AlertActions.setAlert({ alertMessage: e.message }));
+          });
         break;
       case "Want To Read":
         dispatch(
@@ -75,30 +80,47 @@ const MediaScroller = (props) => {
             bookData: bookData,
             actiontype: "move",
           })
-        ).then(() => {
-          removeaftercopy(bookData, selectedTab);
-          dispatch(AlertActions.setAlert({alertMessage:"Book Moved To Want To Read",type:"success"}))
-
-        }).catch((e)=>{
-          dispatch(AlertActions.setAlert({alertMessage:e.message}));
-        });
+        )
+          .then(() => {
+            removeaftercopy(bookData, selectedTab);
+            dispatch(
+              AlertActions.setAlert({
+                alertMessage: "Book Moved To Want To Read",
+                type: "success",
+              })
+            );
+          })
+          .catch((e) => {
+            dispatch(AlertActions.setAlert({ alertMessage: e.message }));
+          });
         break;
 
       case "Read":
         dispatch(
           addReadBook({ uid: uid, bookData: bookData, actiontype: "move" })
-        ).then(() => {
-          removeaftercopy(bookData, selectedTab);
-          dispatch(AlertActions.setAlert({alertMessage:"Book Moved To Read",type:"success"}))
-
-        }).catch((e)=>{
-          dispatch(AlertActions.setAlert({alertMessage:e.message}));
-        });
+        )
+          .then(() => {
+            removeaftercopy(bookData, selectedTab);
+            dispatch(
+              AlertActions.setAlert({
+                alertMessage: "Book Moved To Read",
+                type: "success",
+              })
+            );
+          })
+          .catch((e) => {
+            dispatch(AlertActions.setAlert({ alertMessage: e.message }));
+          });
         break;
 
       case "None":
         removeaftercopy(bookData, selectedTab);
-        dispatch(AlertActions.setAlert({alertMessage:"Book Deleted Successfully",type:"success"}))
+        dispatch(
+          AlertActions.setAlert({
+            alertMessage: "Book Deleted Successfully",
+            type: "success",
+          })
+        );
 
         break;
 
@@ -108,7 +130,6 @@ const MediaScroller = (props) => {
     setMenuVisibleBook("");
   };
 
-  console.log(props.selectedTab);
   return (
     <div
       className={`${styles.container} ${props.className} ${
@@ -131,7 +152,7 @@ const MediaScroller = (props) => {
       {props.bookList &&
         props.bookList.map((book) => {
           return (
-            <div className={`${styles.element}`}>
+            <div className={`${styles.element}`} key={book.id}>
               <Book
                 menuVisible={book.id === menuVisibleBook}
                 fabClick={(id) => {
