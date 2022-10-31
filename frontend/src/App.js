@@ -6,15 +6,18 @@ import Signup from "./components/Signup/Signup";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./store/features/Auth/firebase";
 import { authActions } from "./store/features/Auth/authSlice";
-import { Routes,Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import PrivateRoutes from "./utils/PrivateRoutes";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Shelf from "./components/Shelf/Shelf";
+import ExploreBooks from "./components/ExploreBooks/ExploreBooks";
+import Navbar from "./components/Navbar/Navbar";
+import Alert from "./components/UI/Alerts/Alert";
 
 function App() {
   const dispatch = useDispatch();
   // return <Login></Login>
   useEffect(() => {
-    console.log("why")
+    console.log("why");
     const clean = onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(
@@ -26,17 +29,40 @@ function App() {
         );
       }
     });
-    return clean()
+    return clean();
   }, []);
-  return <Routes>
-   <Route path="/">
-        <Route element={<PrivateRoutes/>}>
-          <Route index element={<Dashboard/>}/>
+  return (
+    <>
+    <Alert/>
+    <Routes>
+      <Route path="/">
+        <Route element={<PrivateRoutes />}>
+          <Route
+            index
+            element={
+              <>
+                <Navbar />
+                <Shelf />
+              </>
+            }
+          />
+
+          <Route
+            path="/explore"
+            element={
+              <>
+                <Navbar />
+                <ExploreBooks />
+              </>
+            }
+          />
         </Route>
         <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup/>}/>
+        <Route path="signup" element={<Signup />} />
       </Route>
-  </Routes>;
+    </Routes>
+    </>
+  );
 }
 
 export default App;

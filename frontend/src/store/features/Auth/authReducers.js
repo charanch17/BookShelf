@@ -1,14 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword,onAuthStateChanged ,signInWithEmailAndPassword} from "firebase/auth";
-import { auth } from "./firebase";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import app, { auth } from "./firebase";
 
 // extra reducer redux thunk
-export const login = createAsyncThunk(
-    "auth/login",
-    async (userData)=>{
-        await signInWithEmailAndPassword(auth,userData.email,userData.password)
-    }
-);
+export const login = createAsyncThunk("auth/login", async (userData) => {
+  await signInWithEmailAndPassword(auth, userData.email, userData.password);
+});
+
+export const logout = createAsyncThunk("auth/logout", async () => {
+  await signOut(auth);
+});
 
 // extra reducer redux thunk
 export const signup = createAsyncThunk("auth/signup", async (userData) => {
@@ -16,31 +23,44 @@ export const signup = createAsyncThunk("auth/signup", async (userData) => {
   await createUserWithEmailAndPassword(auth, userData.email, userData.password);
 });
 
-export const getLoggedInUser = createAsyncThunk("auth/getLoggedInUser", async () => {
-    var data= {email:null,uid:null,phonenumber:null}
+export const getLoggedInUser = createAsyncThunk(
+  "auth/getLoggedInUser",
+  async () => {
+    var data = { email: null, uid: null, phonenumber: null };
     const clean = await onAuthStateChanged(auth, (user) => {
-        if (user) {
-         data= {
-              email: user.email,
-              uid: user.uid,
-              phonenumber: user.phoneNumber
-            }
-          ;
-        }
-      });
-      clean()
-      return data  
-  });
+      if (user) {
+        data = {
+          email: user.email,
+          uid: user.uid,
+          phonenumber: user.phoneNumber,
+        };
+      }
+    });
+    clean();
+    return data;
+  }
+);
 
-
-export const addCurrentUser = (state, {payload}) => {
-  state.currentUser = {...payload};
+export const addCurrentUser = (state, { payload }) => {
+  state.currentUser = { ...payload };
 
   return state;
 };
 
 export const resetCurrentUser = (state) => {
-  console.log(state.currentUser);
+  state.currentUser = {
+    email: null,
+    uid: null,
+    phonenumber: null,
+  };
 
   return state;
 };
+
+export const setLoading = (state)=>{
+  state.isLoading = !state.isLoading;
+}
+
+export const ResetPassword = createAsyncThunk("auth/resetPassword",async(userData)=>{
+  const resp  = await sendPasswordResetEmail(auth,userData.email)
+})

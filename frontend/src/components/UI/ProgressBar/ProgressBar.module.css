@@ -1,0 +1,75 @@
+.progressbar{
+    position: relative;
+display: flex;
+align-items: center;
+flex-direction: column;
+justify-content: center;
+
+}
+.progressbar :nth-child(1) {
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border-color: transparent;
+    border-top: solid 5px;
+    border-radius: 50%;
+    border-top-color:purple ;
+    animation-name:firstchild;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+
+}
+@keyframes firstchild {
+0%{
+    transform: rotate(0deg);
+    border-width: 6px;
+}
+50%{
+    transform:rotate(180deg);
+    border-width: 2px;
+}
+
+100%{
+    border-width: 6px;
+    transform: rotate(360deg);
+}
+
+    
+}
+
+.progressbar :nth-child(2){
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    box-sizing: border-box;
+    border-color: transparent;
+    border-bottom: solid 3px;
+    border-radius: 50%;
+    border-bottom-color:purple ;
+    animation-name: secondchild;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+}
+
+@keyframes secondchild {
+    0%{
+        transform: rotate(0deg);
+        border-width: 2px;
+    }
+    50%{
+        transform: rotate(180deg);
+        border-width: 6px;
+    }
+
+    100%{
+        transform: rotate(360deg);
+        border-width: 2px;
+    }
+    
+        
+    }
+

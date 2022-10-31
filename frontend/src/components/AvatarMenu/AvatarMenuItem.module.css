@@ -1,0 +1,32 @@
+.item{
+   display: flex;
+   padding: 1.2rem;
+   color: white;
+   align-items: center;
+   justify-content: space-between;
+   background-color: rgba(0, 0, 0, 0.3);
+   margin: 2px 0px;
+   
+}
+.item:hover {
+    font-weight: bolder;
+    /* transition-delay: 20ms;  */
+    transition-duration: 200ms;
+}
+.item:hover .end{
+    transform: translateX(15px);
+    transition-duration:300ms ;
+}
+
+.icon{
+    height: 1rem;
+    width: 1rem;
+    color: white;
+}
+.item:hover{
+    background-color: #155078;
+
+}
+/* .title{
+    font-size: 10px;
+} */

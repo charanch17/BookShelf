@@ -1,0 +1,25 @@
+.profile{
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+    margin:auto ;
+    margin-right: 0.5rem;
+    /* margin: 1rem 0.5rem; */
+    color:#47B5FF ;
+}
+.container{
+    display: flex;
+    margin-right: 3rem;
+}
+.username{
+    margin: auto;
+    color: whitesmoke;
+    font-weight: medium;
+}
+.container :hover{
+    cursor: pointer;
+}
+.username::first-letter{
+    text-transform: capitalize;
+}
+

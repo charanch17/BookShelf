@@ -1,0 +1,65 @@
+.navbar{
+    display: flex;
+    background-color: #06283D;
+    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    max-height: 5vh;
+    position: relative;
+}
+.title{
+    font-weight: bolder;
+    color: whitesmoke;
+    margin-left: 10rem;
+    margin-right: auto;
+}
+@media screen and (max-width:450px) {
+    .title{
+        margin-left: 1vw;
+    }
+    
+}
+
+.navigators{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0px;
+}
+.navigatorlink{
+    padding: 0.3rem 1rem;
+    margin-right:  1rem;
+    border-radius:1rem ;
+}
+.navigatorlinktext{
+margin: 0;
+padding: 0;
+font-weight: medium;
+
+color: whitesmoke;
+}
+.goto{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.icon{
+    width: 1.8rem;
+    height: 1.8rem;
+    margin:0px 0.5rem;
+   color: #47B5FF;
+}
+.back{
+    width: 2rem;
+    height: 2rem;
+    color: whitesmoke;
+   margin-right: 1rem;
+}
+.back :hover{
+    cursor: pointer;
+}

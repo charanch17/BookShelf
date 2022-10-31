@@ -1,20 +1,29 @@
 import React, { useRef, useState } from "react";
 import Card from "../UI/Card/Card";
 import styles from "./Signup.module.css";
-import { useDispatch,useSelector } from "react-redux";
-import {Link,Navigate} from "react-router-dom";
-import { getLoggedInUser, signup } from "../../store/features/Auth/authReducers";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate } from "react-router-dom";
+import {
+  getLoggedInUser,
+  signup,
+} from "../../store/features/Auth/authReducers";
+import { AlertActions } from "../../store/features/Alerts/AlertSlice";
+import { authActions } from "../../store/features/Auth/authSlice";
+import ProgressBar from "../UI/ProgressBar/ProgressBar";
 
 const Signup = () => {
   const passwordRef = useRef();
   const emailRef = useRef();
   const confirmPasswordRef = useRef();
   const dispatch = useDispatch();
-  const userID = useSelector((state)=>state.auth.currentUser.uid)
+  const userID = useSelector((state) => state.auth.currentUser.uid);
   const [formValidity, setFormvalidity] = useState({
     email: true,
     password: true,
     confirmPassword: true,
+  });
+  const loading = useSelector((state) => {
+    return state.auth.isLoading;
   });
 
   const formSubmitHandler = (event) => {
@@ -32,40 +41,63 @@ const Signup = () => {
       confirmPassword: confirmPasswordValidity,
     });
     if (emailValidity && passwordValidity && confirmPasswordValidity) {
-        dispatch(signup({email:emailRef.current.value, password:passwordRef.current.value})).then(()=>{
-            dispatch(getLoggedInUser())
+      dispatch(authActions.setLoading());
+      dispatch(
+        signup({
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
         })
-    //   createUserWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
-    //     .then((res) => {
-    //       onAuthStateChanged(auth, (user) => {
-    //         if (user) {
-    //           dispatch(
-    //             authActions.addCurrentUser({
-    //               email: user.email,
-    //               uid: user.uid,
-    //               phonenumber: user.phoneNumber,
-    //             })
-    //           );
-    //         }
-    //       });
-    //     })
-    //     .catch((e) => {
-    //       console.log(e.message);
-    //     });
+      )
+        .then(() => {
+          dispatch(getLoggedInUser());
+          dispatch(
+            AlertActions.setAlert({
+              alertMessage: "Signup Successfull",
+              type: "success",
+            })
+          );
+        })
+        .catch((e) => {
+          dispatch(authActions.setLoading());
+          dispatch(AlertActions.setAlert({ alertMessage: e.message }));
+        });
+      //   createUserWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
+      //     .then((res) => {
+      //       onAuthStateChanged(auth, (user) => {
+      //         if (user) {
+      //           dispatch(
+      //             authActions.addCurrentUser({
+      //               email: user.email,
+      //               uid: user.uid,
+      //               phonenumber: user.phoneNumber,
+      //             })
+      //           );
+      //         }
+      //       });
+      //     })
+      //     .catch((e) => {
+      //       console.log(e.message);
+      //     });
     }
   };
 
   return (
     <div className={styles.container}>
       <Card className={styles.card}>
-        {userID && <Navigate to="/" replace={true}/>}
+        {userID && <Navigate to="/" replace={true} />}
+        {!userID &&loading && <span className={styles.progressbar}><ProgressBar /></span>}
+
         <h1 className={styles.cardheader}>Sign Up</h1>
         <form onSubmit={formSubmitHandler} className={styles.form}>
           <div className={styles["user-input"]}>
             <label htmlFor="email" className={styles.label}>
               Email
             </label>
-            <input id="email" ref={emailRef} />
+            <input
+              id="email"
+              ref={emailRef}
+              className={!formValidity.email ? styles.inputerror : ""}
+            />
             {!formValidity.email && (
               <span className={styles.error}>enter valid email !!</span>
             )}
@@ -74,7 +106,12 @@ const Signup = () => {
             <label htmlFor="password" className={styles.label}>
               password
             </label>
-            <input id="password" ref={passwordRef} type="password" />
+            <input
+              id="password"
+              ref={passwordRef}
+              type="password"
+              className={!formValidity.password ? styles.inputerror : ""}
+            />
             {!formValidity.password && (
               <span className={styles.error}>
                 password didnt match criteria!!
@@ -89,6 +126,7 @@ const Signup = () => {
               id="confirmpassword"
               ref={confirmPasswordRef}
               type="password"
+              className={!formValidity.confirmPassword ? styles.inputerror : ""}
             />
             {!formValidity.confirmPassword && (
               <span className={styles.error}>
@@ -97,7 +135,7 @@ const Signup = () => {
             )}
           </div>
           <div className={styles.actions}>
-            <button type="submit" className={styles.signup}>
+            <button type="submit" className={styles.signup} disabled={loading}>
               Signup
             </button>
             <div className={styles.links}>

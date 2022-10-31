@@ -1,4 +1,5 @@
 export const initialstate = {
-    currentUser : {email:null,uid:null,phonenumber:null}
+    currentUser : {email:null,uid:null,phonenumber:null},
+    isLoading : false
 
 }

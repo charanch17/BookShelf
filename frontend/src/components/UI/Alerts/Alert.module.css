@@ -1,0 +1,84 @@
+.icon{
+    width: 2rem;
+    height: 1.5rem;
+    color: white;
+    margin-right: 0.8rem;
+}
+.error{
+    background-color: #f85454;
+}
+.success{
+    background-color: rgb(18, 228, 18);
+}
+.open{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border:solid 2px transparent ;
+    border-left:6px;
+    min-width: 120px;
+    position: fixed;
+    color: whitesmoke;
+    top: 20vh;
+    left: 40vw;
+    padding: 0.5rem;
+    border-radius: 10px;
+    z-index: 10000;
+    animation-name:slidein ;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes slidein {
+    0%{
+        transform: translateX(150VW);
+    }
+    100%{
+        transform: translateX(0);
+    }
+    
+}
+.open :nth-child(3){
+    margin-right: auto;
+    margin-left: 0.8rem;
+}
+
+.open :nth-child(3):hover{
+ cursor: pointer;
+}
+.close :nth-child(3){
+    margin-right: auto;
+    margin-left: 0.8rem;
+}
+.text{
+    font-size: medium;
+}
+
+/* .close{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border:solid 2px transparent ;
+    border-left:6px;
+    min-width: 120px;
+    background-color: #f85454;
+    position: absolute;
+    color: whitesmoke;
+    top: 20vh;
+    left: 40vw;
+    padding: 0.5rem;
+    border-radius: 10px;
+    z-index: 10000;
+    animation-name:slideout ;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+@keyframes slideout {
+    0%{
+        transform: translateX(-20vw);
+    }
+    100%{
+        transform: translate(150vw);
+        display: none;
+    }
+   
+} */

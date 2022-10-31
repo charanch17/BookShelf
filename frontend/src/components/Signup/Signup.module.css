@@ -5,6 +5,7 @@
    min-width: 30vw;
    margin-bottom: 2rem;
    flex-direction: column;
+   border-radius: 1rem;
  }
  @media screen and (max-width:600px) {
      .card{
@@ -48,6 +49,11 @@
      font-weight: bolder;
      color: whitesmoke;
  }
+ .signup:hover{
+    cursor: pointer;
+    background-color: #0b694d;
+
+ }
  .links{
      display: flex;
      justify-content: center;
@@ -66,5 +72,25 @@
     margin: 0px;
     color: #0e5741;
  }
+
+ .inputerror{
+    /* border-color: red; */
+    animation-name: borderin;
+    animation-duration: 4s;
+    border:1px solid red;
+    animation-fill-mode: forwards;
+}
+
+.progressbar{
+    position: absolute;
+    top: 12vh;
+     }
+
+     .signup:disabled {
+        background-color: grey;
+     }
+     .signup:disabled:hover{
+        cursor: default;
+     }
 
  

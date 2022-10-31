@@ -1,0 +1,118 @@
+.book{
+    display: flex;
+    justify-items: center;
+    width: 10rem;
+    margin: 1rem;
+    /* height: 20rem; */
+    background-color:#042235;
+    flex-direction: column;
+    justify-content: space-around;
+   height: 15rem;
+  
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.title{
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical; 
+    margin:1rem 0.5rem;
+    font-weight: lighter;
+    /* flex-wrap: wrap; */
+    overflow: hidden;
+    color: whitesmoke;
+}
+.image{
+    height: 8rem;
+    width: 8rem;
+   justify-self: flex-start;
+    /* min-width: 80%; */
+}
+.author{
+    margin:0.2rem 0px;
+    /* font-size: xx-small; */
+    font-weight: lighter;
+    color: whitesmoke;
+    justify-self: flex-end;
+}
+.fabicon{
+    width: 1rem;
+    height: 1rem;
+    margin: 0.5rem;
+
+  
+}
+.fab{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 55%;
+    color: black;
+    background-color: red;
+    position: absolute;
+    z-index: 999;
+    left: 9.2rem;
+    top:-3rem;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+}
+.pseudo-placeholder{
+    position:relative;
+    width:0;
+    height:0;
+}
+
+/* .menu{
+    position: absolute;
+    top: 2.3rem;
+    z-index:200;
+    left: 10rem;
+    min-width: 10rem;
+    background-color: #480032;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0.2rem;
+    padding-right:0.2rem ;
+   
+}
+.menutitle{
+    color: rgba(0, 0, 0, 0.9);
+    margin:0.3rem 0px;
+    color: bisque;
+    font-weight: lighter;
+}
+.menuItems{
+    color: whitesmoke;
+    margin: 0.1rem 0px;
+    width: 100%;
+    font-weight: lighter;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0.1rem;
+}
+.menuItems:hover{
+    cursor: pointer;
+    background-color: rgb(236, 100, 123);
+    font-weight: bolder;
+   
+}
+.book:hover{
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
+    transform: scaleX(1.02) scaleY(1.02) translateZ(1rem);
+    transition-duration: 300ms;
+} */
+.book:hover{
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
+    transform: scaleX(1.02) scaleY(1.02) translateZ(1rem);
+    transition-duration: 300ms;
+}
