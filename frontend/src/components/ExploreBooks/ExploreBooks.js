@@ -105,7 +105,7 @@ const ExploreBooks = (props) => {
         <div className={styles.autocomplete}>
           {suggestions.map((suggestion) => {
             return (
-              <span
+              <span key={suggestion}
                 className={styles.suggestion}
                 onClick={() => {
                   setSearchInput(suggestion);

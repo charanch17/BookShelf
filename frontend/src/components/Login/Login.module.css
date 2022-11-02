@@ -31,19 +31,20 @@
     font-weight: bolder;
     /* margin: 0.3rem 0px; */
     position: absolute;
-    top:0.3rem;
+    top:0.5rem;
     left:1rem;
     color:rgb(71, 181, 255);
     /* top: 5vh;
     left: 1rem; */
 }
 .input{
-    height: 1.5rem;
+    height: 2rem;
     outline: none;
     border: 1px solid rgb(71, 181, 255);
     border-radius: 5px;
     margin-bottom: 1rem;
-    color:rgb(71, 181, 255);
+    /* color:rgb(71, 181, 255); */
+    color: aliceblue;
 
     background-color: rgba(43, 159, 231, 0.1);
 

@@ -15,7 +15,7 @@ const Navbar = (props) => {
   });
 
   return (
-    <div className={styles.navbar}>
+    <nav className={styles.navbar}>
       {useLocation().pathname === "/explore" && (
         <Link to="/" replace={true}>
           <ArrowLeftIcon className={styles.back} />
@@ -61,7 +61,7 @@ const Navbar = (props) => {
           )}
         </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 export default Navbar;

@@ -32,6 +32,7 @@
      /* margin: 0.3rem 0px; */
      position: absolute;
      left:1rem;
+     top: 0.4rem;
      color:rgb(71, 181, 255);
 
  }
@@ -101,12 +102,13 @@
      }
 
      .input{
-        height: 1.5rem;
+        height: 2rem;
         outline: none;
         border: 1px solid rgb(71, 181, 255);
         border-radius: 5px;
         margin-bottom: 1rem;
-        color:rgb(71, 181, 255);
+        /* color:rgb(71, 181, 255); */
+        color: aliceblue;
     
         background-color: rgba(43, 159, 231, 0.1);
     
